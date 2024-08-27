@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head th:replace="layouts/fragmentos :: cabecera"></head>
+<body>
+    <div th:replace="layouts/fragmentos :: precarga"></div>
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav th:replace="layouts/fragmentos :: menuSuelto"></nav>
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav th:replace="layouts/fragmentos :: menuNavegacion"></nav>
+                    <div class="pcoded-content">
+                        <div th:replace="layouts/fragmentos :: arriba"></div>                      
+                        <div class="pcoded-inner-content">                            
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="row"> <!--AQU� COMIENZA-->                                            
+                                            <div class="row col-12">
+                                            	<div class="container">
+                                            		<form th:action="@{/proveedor/form}" th:object="${proveedor}" method="post">
+                                            			<div class="card">
+                                            				<div class="card-header bg-nuevo text-white text-right ">
+                                            				<i class="fas fa-user-plus"></i> AGREGAR NUEVO PROVEEDOR
+                                            				</div>
+                                            				<div class="card-body">
+                                            					<div class="row">
+	                                            					<div class="col-md-6 mb-2">
+	                                            						<label>Razón Social</label>
+	                                            						<input th:field="*{razonsocial}" type="text" class="form-control" placeholder="Ingrese Razón Social"/>
+	                                            					</div>
+	                                            					<div class="col-md-6 mb-2">
+	                                            						<label>RUC</label>
+	                                            						<input th:field="*{ruc}" type="text" class="form-control" placeholder="Número de RUC : 11 dígitos"/>
+	                                            					</div>
+	                                            					<div class="col-md-6 mb-2">
+	                                            						<label>Dirección</label>
+	                                            						<input th:field="*{direccion}" type="text" class="form-control" placeholder="Ingrese dirección"/>
+	                                            					</div>
+	                                            					<div class="col-md-6 mb-2">
+	                                            						<label>Teléfono</label>
+	                                            						<input th:field="*{telefono}" type="text" class="form-control" placeholder="Número de Teléfono: hasta 9 dígitos"/>
+	                                            					</div>
+	                                            					<div class="col-md-6 mb-2">
+	                                            						<label>Persona de Contacto</label>
+	                                            						<input th:field="*{nom_contacto}" type="text" class="form-control" placeholder="Ingrese nombre del contacto"/>
+	                                            					</div>
+	                                            					<div class="col-md-6 mt-4 text-center">
+																		<button type="submit" class="btn btn-success pb-2 mb-3 mr-4"><i class="fas fa-save"></i> Guardar Proveedor</button>	                                            						
+                                            						</div>
+	                                            				</div>	
+                                            				</div>
+                                            			</div>
+                                            			                                          				
+                                            		</form>
+                                            	</div>
+                                            </div>
+                                            <div class="row col-12 text-center">
+                                            <div class="container">
+                                            	<div class="card">
+                                            		<div class="card-header bg-dark text-white  text-center"><i class="fas fa-list-alt"></i> LISTADO DE PROVEEDORES</div>
+                                            		<div class="card-body bg-dark">
+                                            		
+														<table class="table-responsive table-bordered table-hover">
+															<thead class="bg-info text-white text-center">
+																<tr>																	
+																	<th scope="col">CÓDIGO</th>
+																	<th scope="col">RAZÓN SOCIAL</th>
+																	<th scope="col">RUC</th>
+																	<th scope="col">DIRECCIÓN</th>
+																	<th scope="col">TELÉFONO</th>
+																	<th scope="col">CONTACTO</th>
+																	<th class="bg-dark"></th>
+																	<th class="bg-dark"></th>
+																</tr>
+															</thead>
+															<tbody class="listadodeProveedores text-white">
+																<tr th:each="item: ${listaProveedores}">																	
+																	<td class="text-center" th:text="${item.id}">Mark</td>
+																	<td th:text="${item.razonsocial}">Otto</td>
+																	<td th:text="${item.ruc}">@mdo</td>
+																	<td th:text="${item.direccion}">Otto</td>
+																	<td th:text="${item.telefono}">@mdo</td>
+																	<td th:text="${item.nom_contacto}">Otto</td>
+																	<td class="text-center m-1 p-1">
+																		<a href="#" th:id="${item.id}" th:param1="${item.razonsocial}" th:param2="${item.ruc}" th:param3="${item.direccion}" th:param4="${item.telefono}" th:param5="${item.nom_contacto}" class=" m-1 p-1 btn btn-warning editarProveedor text-dark" data-toggle="modal" data-target="#editModal"><i class="fas fa-user-edit"></i> Editar</a>
+																	</td>
+																	
+																	<td class="text-center m-1 p-1">
+																		<a th:href="@{/proveedor/eliminar/}+${item.id}" class="btn btn-danger m-1 p-1" onclick="return confirm('¿Eliminar al Proveedor?...')">
+																		<i class="fas fa-user-minus"></i> Eliminar
+																		</a>
+																	</td>															
+																																		
+																</tr>																
+															</tbody>
+														</table>																									
+
+													</div>
+                                            	</div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal ------------------------------------------------------------------------------------------>
+	<div class="modal fade" id="editModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-info">
+					<h5 class="modal-title" id="exampleModalLabel">Editar Datos del Proveedor</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form th:action="@{/proveedor/form}" th:object="${proveedor}" method="post">
+					<!--  -->
+					
+					<input type="hidden" th:field="*{id}" />
+					
+					<!--  -->
+					<div class="modal-body">
+					
+						<div class="form-row mb-2">
+							<div class="col-12">
+								<label>Razón Social</label>
+								<input type="text" class="form-control" id="txtRaz" name="razonsocial"/>
+							</div>	
+						</div>
+						
+						<div class="form-row mb-2">
+							<div class="col-12">
+								<label>RUC</label>
+								<input type="text" class="form-control" id="txtRuc" name="ruc"/>
+							</div>	
+						</div>
+						
+						<div class="form-row mb-2">
+							<div class="col-12">
+								<label>Dirección</label>
+								<input type="text" class="form-control" id="txtDir" name="direccion"/>
+							</div>	
+						</div>
+						
+						<div class="form-row mb-2">
+							<div class="col-12">
+								<label>Teléfono</label>
+								<input type="text" class="form-control" id="txtTel" name="telefono"/>
+							</div>	
+						</div>
+						
+						<div class="form-row mb-2">
+							<div class="col-12">
+								<label>Persona de Contacto</label>
+								<input type="text" class="form-control" id="txtCon" name="nom_contacto"/>
+							</div>	
+						</div>
+						
+					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal"><i class="fas fa-ban"></i> Cancel</button>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-archive"></i> Actualizar</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="layouts/fragmentos :: librerias"></div>
+	<script th:src="@{/js/proveedor.js}"></script>
+</body>
+</html>

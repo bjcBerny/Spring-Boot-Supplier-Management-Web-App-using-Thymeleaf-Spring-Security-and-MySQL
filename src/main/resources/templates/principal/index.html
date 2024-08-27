@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head th:replace="layouts/fragmentos :: cabecera"></head>
+<body>
+    <div th:replace="layouts/fragmentos :: precarga"></div>
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav th:replace="layouts/fragmentos :: menuSuelto"></nav>
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav th:replace="layouts/fragmentos :: menuNavegacion"></nav>
+                    <div class="pcoded-content">
+                        <div th:replace="layouts/fragmentos :: arriba"></div>                      
+                        <div class="pcoded-inner-content">                            
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="row"> <!--AQUÍ COMIENZA-->
+                                            <div class="col-12">
+                                                <h1>Bienvenido al Sistema</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="layouts/fragmentos :: librerias"></div>
+</body>
+</html>
