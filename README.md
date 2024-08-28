@@ -2,6 +2,8 @@
 
 Este es un proyecto desarrollado como trabajo final del curso universitario "SOLUCIONES WEB Y APLICACIONES DISTRIBUIDAS". El proyecto consiste en una aplicación web con arquitectura de separación por capas bajo el patrón MVC, implementada en Java utilizando el framework Spring Boot.
 
+Video Demo [Video](https://www.youtube.com/watch?v=YSCmj8ZlF4E)
+
 ## Descripción del Proyecto
 
 **miProyectoAlmacen** es una aplicación web diseñada para gestionar el inventario de un almacén, proporcionando funcionalidades de registro de proveedores. La aplicación sigue una arquitectura orientada a servicios y está diseñada para ser desplegada en un entorno distribuido.
