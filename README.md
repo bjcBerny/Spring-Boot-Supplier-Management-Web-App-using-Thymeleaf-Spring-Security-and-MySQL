@@ -30,3 +30,52 @@ Este es un proyecto desarrollado como trabajo final del curso universitario "SOL
 - **Maven**: 3.6.0 o superior
 - **Base de Datos**: H2 (para desarrollo) o MySQL (para producción)
 
+## Scripts MySql
+
+```
+CREATE TABLE IF NOT EXISTS usuarios (
+ `id` INT(11) NOT NULL AUTO_INCREMENT,
+ `username` VARCHAR(45) NOT NULL,
+ `password` VARCHAR(100) NOT NULL,
+ `enabled` TINYINT(1) NOT NULL,
+ PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS roles (
+ `id` INT(11) NOT NULL AUTO_INCREMENT,
+ `user_id` INT(11) NOT NULL,
+ `authority` VARCHAR(50) NOT NULL,
+ PRIMARY KEY (`id`),
+ INDEX `fk_roles_usuarios_idx` (`user_id` ASC) VISIBLE,
+ CONSTRAINT `fk_roles_usuarios`
+  FOREIGN KEY (`user_id`)
+  REFERENCES usuarios (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE `proveedores` (
+  `prov_id` int NOT NULL AUTO_INCREMENT,
+  `prov_raz_social` varchar(100) NOT NULL,
+  `prov_ruc` varchar(11) NOT NULL,
+  `prov_direccion` varchar(100) NOT NULL,
+  `prov_telf` varchar(9) NOT NULL,
+  `prov_contacto` varchar(45) NOT NULL,
+  PRIMARY KEY (`prov_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+INSERT INTO usuarios VALUES (NULL, 'Berny', '$2a$10$SVUWI2qZ6vLA8QaWaprbH.JOWIVf5IxahL5hAo1GXbf9p3Abie9Jy', 1);
+INSERT INTO usuarios VALUES (NULL, 'Pepe', '$2a$10$JwjRPX0rwf2UTsjEeTuEFOEx3zREaTVYRFJ8XNqvzFIV5AV34QaoG', 1);
+INSERT INTO usuarios VALUES (NULL, 'Juan', '$2a$10$YenOUKEtlCY/gNJnWkA8Quib3H4d5zTzs3iefIFh.ioM/8XnMPTSS', 1);
+
+INSERT INTO roles VALUES (NULL, 1, 'ROLE ADMIN');
+INSERT INTO roles VALUES (NULL, 1, 'ROLE USER');
+INSERT INTO roles VALUES (NULL, 2, 'ROLE USER');
+INSERT INTO roles VALUES (NULL, 3, 'ROLE USER');
+INSERT INTO roles VALUES (NULL, 4, 'ROLE ADMIN');
+
+passwords = almacenSPRING2021
+user = Berny
+
+```
+
